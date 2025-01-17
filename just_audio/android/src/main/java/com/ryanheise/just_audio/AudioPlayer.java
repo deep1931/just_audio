@@ -391,7 +391,8 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
             Log.e(TAG, "default PlaybackException: " + error.getMessage());
             sendError(String.valueOf(error.errorCode), error.getMessage(), mapOf("index", currentIndex));
         }
-        errorCount++;
+        //dnt want to skip, if something bad happened, will handle error in flutter
+        /*errorCount++;
         if (player.hasNextMediaItem() && currentIndex != null && errorCount <= 5) {
             int nextIndex = currentIndex + 1;
             Timeline timeline = player.getCurrentTimeline();
@@ -402,7 +403,7 @@ public class AudioPlayer implements MethodCallHandler, Player.Listener, Metadata
                 player.prepare();
                 player.seekTo(nextIndex, 0);
             }
-        }
+        }*/
     }
 
     private void completeSeek() {
